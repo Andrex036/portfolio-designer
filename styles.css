@@ -141,6 +141,13 @@ img {
     line-height: 1;
 }
 
+.logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .nav-links {
     display: flex;
     gap: 40px;
