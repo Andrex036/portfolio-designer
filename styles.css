@@ -141,6 +141,19 @@ img {
     line-height: 1;
 }
 
+.logo-brand-name {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    line-height: 1;
+}
+
+.logo-brand-accent {
+    color: var(--primary);
+}
+
 .logo-img {
     height: 44px;
     width: auto;
