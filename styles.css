@@ -27,7 +27,9 @@
 }
 
 /* Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -85,7 +87,9 @@ img {
 }
 
 @media (max-width: 768px) {
-    .cursor, .cursor-follower {
+
+    .cursor,
+    .cursor-follower {
         display: none;
     }
 }
@@ -128,7 +132,7 @@ img {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .logo-text {
@@ -172,11 +176,13 @@ img {
     transition: var(--transition);
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--white);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
@@ -413,8 +419,15 @@ img {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 .profile-image {
@@ -460,8 +473,17 @@ img {
 }
 
 @keyframes scrollPulse {
-    0%, 100% { opacity: 1; height: 60px; }
-    50% { opacity: 0.5; height: 80px; }
+
+    0%,
+    100% {
+        opacity: 1;
+        height: 60px;
+    }
+
+    50% {
+        opacity: 0.5;
+        height: 80px;
+    }
 }
 
 /* Section Styles */
@@ -627,7 +649,8 @@ img {
     transition: var(--transition);
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
     border-color: var(--primary);
     color: var(--primary);
     background: rgba(255, 107, 107, 0.1);
@@ -1283,6 +1306,7 @@ img {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1772,8 +1796,13 @@ img {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .article-modal {
@@ -1789,8 +1818,15 @@ img {
 }
 
 @keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-close {
@@ -1967,7 +2003,7 @@ img {
     border-radius: 20px 0 0 20px;
 }
 
-.article-quote > i {
+.article-quote>i {
     color: var(--purple);
     font-size: 1.5rem;
     margin-bottom: 15px;
@@ -2188,7 +2224,7 @@ img {
     .article-modal-overlay {
         padding: 20px;
     }
-    
+
     .modal-close {
         top: 10px;
         right: 10px;
@@ -2196,60 +2232,60 @@ img {
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .article-hero {
         grid-template-columns: 1fr;
         padding: 40px 25px;
         text-align: center;
     }
-    
+
     .article-hero-content {
         max-width: 100%;
     }
-    
+
     .article-title {
         font-size: 1.8rem;
     }
-    
+
     .article-hero-icon {
         width: 80px;
         height: 80px;
         font-size: 2rem;
         margin-top: 20px;
     }
-    
+
     .article-content {
         padding: 30px 25px;
     }
-    
+
     .article-intro .lead {
         font-size: 1.1rem;
     }
-    
+
     .article-body h2 {
         font-size: 1.3rem;
     }
-    
+
     .article-styles {
         grid-template-columns: 1fr;
     }
-    
+
     .article-grid-images {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .article-image-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .article-navigation {
         grid-template-columns: 1fr;
     }
-    
+
     .article-nav {
         text-align: center !important;
     }
-    
+
     .modal-footer {
         padding: 20px 25px;
     }
