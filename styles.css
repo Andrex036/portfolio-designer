@@ -145,6 +145,19 @@ img {
     line-height: 1;
 }
 
+.logo-brand-name {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    line-height: 1;
+}
+
+.logo-brand-accent {
+    color: var(--primary);
+}
+
 .logo-img {
     height: 44px;
     width: auto;
@@ -1540,9 +1553,7 @@ img {
 .project-hero-image {
     height: 400px;
     border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
     margin-right: 40px;
 }
 
@@ -1642,6 +1653,32 @@ img {
 .gallery-item.large .gallery-placeholder {
     height: 100%;
     min-height: 520px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition);
+}
+
+.gallery-item.large .gallery-img {
+    height: 100%;
+    min-height: 520px;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.03);
+}
+
+.hero-project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 30px;
+    display: block;
 }
 
 .results-section {
