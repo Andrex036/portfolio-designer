@@ -532,13 +532,17 @@ function initNewsletter() {
                 saveSubscriptionLocally(email);
                 
             } catch (error) {
-                console.error(error);
-                showStatus('¡Te has suscrito exitosamente!', 'success', statusMsg);
+                console.error('Error con FormSubmit:', error);
+                if (error.message && /confirm|activate/i.test(error.message)) {
+                    showStatus('Confirma el correo en tu bandeja de entrada para activar el formulario.', 'error', statusMsg);
+                } else {
+                    showStatus('No se pudo enviar al servidor (falta activación o error de red). Guardado localmente.', 'error', statusMsg);
+                }
                 saveSubscriptionLocally(email);
-                form.reset();
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
+                form.reset();
                 
                 setTimeout(() => {
                     statusMsg.style.display = 'none';
