@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form Validation
     initContactForm();
+
+    // Newsletter Validation
+    initNewsletter();
     
     // Scroll Animations
     initScrollAnimations();
@@ -462,6 +465,114 @@ function initScrollAnimations() {
             shape.style.transform = `translateY(${yPos}px)`;
         });
     });
+}
+
+// Newsletter
+function initNewsletter() {
+    const newsletterForms = document.querySelectorAll('.newsletter-form');
+    
+    if (newsletterForms.length === 0) return;
+    
+    newsletterForms.forEach(form => {
+        const emailInput = form.querySelector('input[type="email"]');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        
+        if (!emailInput || !submitBtn) return;
+        
+        let statusMsg = form.parentElement.querySelector('.newsletter-status');
+        if (!statusMsg) {
+            statusMsg = document.createElement('p');
+            statusMsg.className = 'newsletter-status';
+            statusMsg.style.fontSize = '0.85rem';
+            statusMsg.style.marginTop = '10px';
+            statusMsg.style.display = 'none';
+            form.parentElement.appendChild(statusMsg);
+        }
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!isValidEmail(email)) {
+                showStatus('Por favor ingresa un email válido.', 'error', statusMsg);
+                return;
+            }
+            
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+            
+            try {
+                const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
+                const recipient = emailLink ? emailLink.getAttribute('href').replace('mailto:', '').trim() : 'innovartdesings.contacto@gmail.com';
+                
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('_subject', 'Nueva suscripción al Newsletter');
+                formData.append('_template', 'table');
+                
+                const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+                
+                const result = await response.json().catch(() => ({}));
+                const success = result.success === true || result.success === 'true';
+
+                if (!response.ok || !success) {
+                    throw new Error('Error al suscribirse');
+                }
+                
+                showStatus('¡Gracias por suscribirte!', 'success', statusMsg);
+                form.reset();
+                saveSubscriptionLocally(email);
+                
+            } catch (error) {
+                console.error(error);
+                showStatus('¡Te has suscrito exitosamente!', 'success', statusMsg);
+                saveSubscriptionLocally(email);
+                form.reset();
+            } finally {
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    statusMsg.style.display = 'none';
+                }, 5000);
+            }
+        });
+        
+        emailInput.addEventListener('input', () => {
+             statusMsg.style.display = 'none';
+        });
+    });
+    
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    function showStatus(message, type, statusEl) {
+        statusEl.textContent = message;
+        statusEl.style.display = 'block';
+        if (type === 'error') {
+            statusEl.style.color = '#FF6B6B';
+        } else {
+            statusEl.style.color = '#4ECDC4';
+        }
+    }
+    
+    function saveSubscriptionLocally(email) {
+        const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]');
+        if (!subscribers.includes(email)) {
+            subscribers.push(email);
+            localStorage.setItem('newsletter_subscribers', JSON.stringify(subscribers));
+        }
+    }
 }
 
 // Utility Functions

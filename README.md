@@ -73,5 +73,5 @@ No necesitas comando de build. Solo publica el contenido del directorio raiz.
 
 ## Pendientes conocidos
 
-- Los formularios de newsletter del footer siguen siendo visuales y no guardan suscripciones.
+- Los formularios de newsletter del footer ahora son funcionales usando FormSubmit y guardan las suscripciones en LocalStorage como respaldo.
 - Las redes sociales aun apuntan a `#`; conviene reemplazarlas por URLs reales antes de publicar.

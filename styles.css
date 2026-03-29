@@ -279,10 +279,23 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: stretch;
     width: 100%;
+}
+
+.hero-text,
+.hero-image {
+    min-height: 520px;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 560px;
 }
 
 .hero-subtitle {
@@ -299,11 +312,12 @@ img {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: clamp(2.7rem, 3.6vw, 3.2rem);
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 25px;
+    line-height: 1.1;
+    margin-bottom: 22px;
     font-family: var(--font-display);
+    max-width: 11ch;
 }
 
 .gradient-text {
@@ -321,10 +335,11 @@ img {
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: 1.02rem;
+    line-height: 1.75;
     color: var(--gray);
-    margin-bottom: 40px;
-    max-width: 500px;
+    margin-bottom: 34px;
+    max-width: 52ch;
 }
 
 .hero-buttons {
@@ -394,8 +409,9 @@ img {
 
 .image-wrapper {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: min(100%, 460px);
+    aspect-ratio: 1 / 1;
+    height: auto;
 }
 
 .floating-shape {
@@ -444,8 +460,10 @@ img {
 }
 
 .profile-image {
-    width: 300px;
-    height: 300px;
+    width: 76%;
+    height: 76%;
+    max-width: 340px;
+    max-height: 340px;
     border-radius: 30px;
     overflow: hidden;
     position: relative;
@@ -1337,8 +1355,19 @@ img {
         text-align: center;
     }
 
+    .hero-text,
+    .hero-image {
+        min-height: auto;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        align-items: center;
+    }
+
     .hero-title {
-        font-size: 2.8rem;
+        max-width: 14ch;
+        font-size: 2.6rem;
     }
 
     .hero-description {
@@ -1354,13 +1383,12 @@ img {
     }
 
     .image-wrapper {
-        width: 300px;
-        height: 300px;
+        width: min(100%, 360px);
     }
 
     .profile-image {
-        width: 220px;
-        height: 220px;
+        width: 78%;
+        height: 78%;
     }
 
     .about-grid {
@@ -1396,7 +1424,7 @@ img {
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.15rem;
     }
 
     .section-title {
@@ -1447,7 +1475,7 @@ img {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.85rem;
     }
 
     .hero-buttons {
