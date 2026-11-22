@@ -520,7 +520,7 @@ function initNewsletter() {
             
             try {
                 const emailLink = document.querySelector('.contact-info a[href^="mailto:"]');
-                const recipient = emailLink ? emailLink.getAttribute('href').replace('mailto:', '').trim() : 'innovartdesings.contacto@gmail.com';
+                const recipient = emailLink ? emailLink.getAttribute('href').replace('mailto:', '').trim() : 'innovartdesigns.contacto@gmail.com';
                 
                 const formData = new FormData();
                 formData.append('email', email);
