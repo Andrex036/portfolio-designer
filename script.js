@@ -217,6 +217,7 @@ function initSmoothScroll() {
 function initProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const showAllBtn = document.getElementById('btn-show-all-projects');
     
     if (filterButtons.length === 0 || projectCards.length === 0) return;
     
@@ -241,6 +242,20 @@ function initProjectFilters() {
             });
         });
     });
+
+    if (showAllBtn) {
+        showAllBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const filterAllBtn = document.querySelector('.filter-btn[data-filter="all"]');
+            if (filterAllBtn) {
+                filterAllBtn.click();
+            }
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
 }
 
 // Contact Form Validation
